@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HostNet.Store - Modern Web Hosting</title>
+  <meta name="description" content="HostNet.Store - Simple, professional web hosting with support for custom domains and HTML uploads."/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #0d1117;
+      color: #c9d1d9;
+    }
+    header {
+      background: #161b22;
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 2px solid #ff4d4d;
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+    }
+    h1 {
+      color: #58a6ff;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    input[type="text"],
+    input[type="file"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      background: #21262d;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1rem;
+    }
+    button {
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff1a1a;
+    }
+    .status {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .success {
+      color: #6bff6b;
+    }
+    .error {
+      color: #ff1a1a;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #8b949e;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>HostNet.Store</h1>
+    <p>Professional Hosting for Your Website</p>
+  </header>
+
+  <div class="container">
+    <!-- Backend Status -->
+    <div id="backendStatus">Checking backend status...</div>
+
+    <!-- Hosting Info -->
+    <section>
+      <h2>Hosting Options</h2>
+      <p>We offer two ways to host on HostNet.Store:</p>
+      <ul>
+        <li><strong>Custom Subdomain:</strong> Choose your path (e.g., <code>hostnet.store/@username</code>)</li>
+        <li><strong>Own Domain:</strong> Transfer or connect your existing domain</li>
+      </ul>
+    </section>
+
+    <!-- Submission Form -->
+    <section>
+      <h2>Submit Your Website</h2>
+      <form id="hostingForm">
+        <div class="form-group">
+          <label for="username">Desired Subdomain</label>
+          <input type="text" id="username" name="username" placeholder="e.g. john" />
+        </div>
+
+        <div class="form-group">
+          <label for="domainName">Domain Name (Optional)</label>
+          <input type="text" id="domainName" name="domainName" placeholder="example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="authCode">Authorization Code (EPP Code, if transferring)</label>
+          <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" />
+        </div>
+
+        <div class="form-group">
+          <label for="reasonSelect">Reason for Hosting</label>
+          <select id="reasonSelect" name="reasonSelect" required>
+            <option value="">-- Select a Reason --</option>
+            <option value="Personal Site">Personal Site</option>
+            <option value="Portfolio">Portfolio</option>
+            <option value="Redirect">Redirect to Another Site</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group" id="customReasonField" style="display:none;">
+          <label for="customReason">Specify Custom Reason</label>
+          <input type="text" id="customReason" name="customReason" placeholder="Type your reason here" />
+        </div>
+
+        <div class="form-group">
+          <label for="redirectUrl">Redirect URL (if applicable)</label>
+          <input type="text" id="redirectUrl" name="redirectUrl" placeholder="https://example.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="htmlFile">Upload HTML File (with CSS/JS included)</label>
+          <input type="file" id="htmlFile" name="htmlFile" accept=".html" />
+        </div>
+
+        <div class="form-group">
+          <label for="customHtml">Or Paste Custom HTML/Social Widget</label>
+          <textarea id="customHtml" name="customHtml" rows="6" placeholder="Paste your full HTML snippet here"></textarea>
+        </div>
+
+        <button type="submit">Submit Request</button>
+        <p id="formMessage"></p>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    &copy; 2025 HostNet.Store. All rights reserved. |
+    <a href="#" style="color:#58a6ff;">Privacy Policy</a> |
+    <a href="#" style="color:#58a6ff;">Terms of Service</a>
+  </footer>
+
+  <script>
+    const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1362428754458181874/TaKeGN5i6l1gnWViBJVrem9jw2yonAxy0_PunlyYcXlwMlhj57tYmogtM7QuXgKj9gPE';
+
+    // Check backend status
+    async function checkBackendStatus() {
+      try {
+        const res = await fetch("https://hostnet-backend.onrender.com/status");
+        if (res.ok) {
+          document.getElementById("backendStatus").innerHTML = "Backend is <span class='status success'>online</span>";
+        } else {
+          throw new Error();
+        }
+      } catch {
+        document.getElementById("backendStatus").innerHTML = "Backend is <span class='status error'>offline</span>";
+      }
+    }
+
+    // Show/hide custom reason field
+    document.getElementById('reasonSelect').addEventListener('change', function () {
+      const customReasonField = document.getElementById('customReasonField');
+      customReasonField.style.display = this.value === 'Other' ? 'block' : 'none';
+    });
+
+    // Handle form submission
+    document.getElementById('hostingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(document.getElementById('hostingForm'));
+      const data = Object.fromEntries(formData);
+
+      if (!data.username && !data.domainName) {
+        alert('Please provide either a username or domain name.');
+        return;
+      }
+
+      // Prepare embed message
+      const embed = {
+        title: "New Hosting Request",
+        color: 0xff4d4d,
+        fields: []
+      };
+
+      for (const key in data) {
+        if (data[key]) {
+          embed.fields.push({ name: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), value: `\`${data[key]}\``, inline: false });
+        }
+      }
+
+      // Send to Discord
+      const payload = {
+        username: "HostNet.Store Bot",
+        embeds: [embed]
+      };
+
+      try {
+        const res = await fetch(DISCORD_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+
+        const msg = document.getElementById("formMessage");
+        if (res.ok) {
+          msg.textContent = "Request submitted successfully!";
+          msg.className = "success";
+          document.getElementById("hostingForm").reset();
+        } else {
+          msg.textContent = "Failed to submit request.";
+          msg.className = "error";
+        }
+      } catch (err) {
+        console.error(err);
+        document.getElementById("formMessage").textContent = "An error occurred.";
+      }
+    });
+
+    window.addEventListener("load", checkBackendStatus);
+  </script>
+</body>
+</html>
