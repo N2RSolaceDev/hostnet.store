@@ -198,8 +198,15 @@
     // Handle form submission
     document.getElementById('hostingForm').addEventListener('submit', async (e) => {
       e.preventDefault();
+
       const formData = new FormData(document.getElementById('hostingForm'));
-      const data = Object.fromEntries(formData);
+      const data = {};
+
+      formData.forEach((value, key) => {
+        if (value.trim()) {
+          data[key] = value.trim();
+        }
+      });
 
       if (!data.username && !data.domainName) {
         alert('Please provide either a username or domain name.');
@@ -214,9 +221,14 @@
       };
 
       for (const key in data) {
-        if (data[key]) {
-          embed.fields.push({ name: key.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase()), value: `\`${data[key]}\``, inline: false });
-        }
+        const label = key
+          .replace(/([A-Z])/g, ' $1')
+          .replace(/^./, str => str.toUpperCase());
+        embed.fields.push({
+          name: label,
+          value: `\`${data[key].substring(0, 1024)}\``, // Limit to 1024 chars per field
+          inline: false
+        });
       }
 
       // Send to Discord
@@ -237,13 +249,15 @@
           msg.textContent = "Request submitted successfully!";
           msg.className = "success";
           document.getElementById("hostingForm").reset();
+          document.getElementById("customReasonField").style.display = "none";
         } else {
           msg.textContent = "Failed to submit request.";
           msg.className = "error";
         }
       } catch (err) {
-        console.error(err);
-        document.getElementById("formMessage").textContent = "An error occurred.";
+        console.error("Error submitting form:", err);
+        document.getElementById("formMessage").textContent = "An error occurred while sending the request.";
+        document.getElementById("formMessage").className = "error";
       }
     });
 
