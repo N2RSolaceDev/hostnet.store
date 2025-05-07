@@ -6,9 +6,6 @@
   <title>HostNet.Wiki – Secure & Flexible Hosting</title>
   <meta name="description" content="HostNet.Wiki – Reliable hosting with domain transfers, custom code, and subdomains.">
 
-  <!-- Favicon -->
-  <link rel="icon" href="https://example.com/favicon.ico" type="image/x-icon"/>
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"/>
 
@@ -104,6 +101,10 @@
       color: #666;
       font-size: 0.9rem;
     }
+
+    .g-recaptcha {
+      margin-bottom: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -158,6 +159,11 @@
       <input type="file" id="codeFiles" name="codeFiles" multiple accept=".html,.css,.js,image/*" required />
     </div>
 
+    <!-- reCAPTCHA -->
+    <div class="form-group">
+      <div class="g-recaptcha" data-sitekey="6LeLxzErAAAAAOfIwlGu34wx1BaKQIoD6I6ZH6aV"></div>
+    </div>
+
     <!-- Submit Button -->
     <button type="submit">Submit Hosting Request</button>
     <p class="status" id="formStatus"></p>
@@ -167,6 +173,9 @@
 <footer>
   © 2025 HostNet.Wiki – All Rights Reserved | <a href="#" style="color:#4d4dff;">Privacy Policy</a>
 </footer>
+
+<!-- Load reCAPTCHA API -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 <script>
   const form = document.getElementById("hostingForm");
@@ -184,9 +193,18 @@
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(form);
     const statusMsg = document.getElementById("formStatus");
+    const formData = new FormData(form);
+    const recaptchaResponse = grecaptcha.getResponse();
 
+    // Validate CAPTCHA
+    if (!recaptchaResponse.length > 0) {
+      statusMsg.textContent = "Please complete the CAPTCHA.";
+      statusMsg.style.color = "#ff4d4d";
+      return;
+    }
+
+    // Additional validation for selected hosting type
     if (!formData.get("hostingType")) {
       statusMsg.textContent = "Please select a hosting type.";
       statusMsg.style.color = "#ff4d4d";
@@ -217,9 +235,11 @@
     // Simulate sending to backend
     console.log("Submitted Data:", Object.fromEntries(formData));
 
+    // Here you would normally send to server with fetch or AJAX
     statusMsg.textContent = "Request submitted successfully! We'll contact you soon.";
     statusMsg.style.color = "#6bff6b";
     form.reset();
+    grecaptcha.reset(); // Reset CAPTCHA after submission
   });
 </script>
 
