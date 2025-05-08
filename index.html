@@ -5,13 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HostNet.Wiki – Fast, Free & Secure Hosting</title>
   <meta name="description" content="HostNet.Wiki – Reliable hosting services with domain transfers, subdomains, and custom code support." />
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter :wght@400;600&display=swap" rel="stylesheet"/>
-
   <!-- Google reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js " async defer></script>
-
   <style>
     :root {
       --primary-color: #00f7ff;
@@ -22,11 +19,9 @@
       --border-color: rgba(255, 255, 255, 0.1);
       --input-bg: #2a2a40;
     }
-
     * {
       box-sizing: border-box;
     }
-
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -34,14 +29,12 @@
       color: var(--text-color);
       line-height: 1.6;
     }
-
     header {
       padding: 2rem;
       text-align: center;
       background: var(--card-bg);
       border-bottom: 1px solid var(--border-color);
     }
-
     .logo {
       font-size: 2.5rem;
       font-weight: 700;
@@ -50,25 +43,21 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .hero {
       text-align: center;
       padding: 3rem 1rem;
       max-width: 700px;
       margin: auto;
     }
-
     .hero h1 {
       font-size: 2.2rem;
       margin-bottom: 1rem;
     }
-
     .container {
       max-width: 900px;
       margin: auto;
       padding: 1rem;
     }
-
     .section {
       background: var(--card-bg);
       border: 1px solid var(--border-color);
@@ -78,23 +67,19 @@
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
       transition: transform 0.3s ease;
     }
-
     .section:hover {
       transform: translateY(-5px);
     }
-
     h2 {
       font-size: 1.4rem;
       margin-bottom: 1rem;
       color: var(--secondary-color);
     }
-
     label {
       display: block;
       margin-bottom: 0.4rem;
       font-weight: 500;
     }
-
     input[type="text"],
     input[type="file"],
     select,
@@ -108,7 +93,6 @@
       margin-bottom: 1rem;
       font-size: 1rem;
     }
-
     button {
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       color: #fff;
@@ -120,45 +104,36 @@
       transition: all 0.3s ease;
       font-size: 1rem;
     }
-
     button:hover {
       transform: scale(1.03);
       box-shadow: 0 0 10px var(--primary-color);
     }
-
     .status {
       font-size: 0.95rem;
       margin-top: 1rem;
     }
-
     .success {
       color: #6bff6b;
     }
-
     .error {
       color: #ff4d4d;
     }
-
     footer {
       text-align: center;
       padding: 2rem 1rem;
       font-size: 0.9rem;
       color: rgba(255, 255, 255, 0.6);
     }
-
     footer a {
       color: var(--primary-color);
       text-decoration: none;
     }
-
     footer a:hover {
       text-decoration: underline;
     }
-
     .g-recaptcha {
       margin: 1rem 0;
     }
-
     @media (max-width: 600px) {
       .logo {
         font-size: 2rem;
@@ -166,23 +141,15 @@
     }
   </style>
 </head>
-
 <body>
-
 <header>
   <div class="logo">HOSTNET.WIKI</div>
 </header>
-
 <div class="hero">
   <h1>Free, Fast & Secure Web Hosting for Everyone</h1>
   <p>Whether you're launching a personal blog or transferring domains, we've got you covered with powerful tools and seamless setup.</p>
 </div>
-
 <div class="container">
-
-  <!-- Backend Status -->
-  <div class="section backend-status" id="backendStatus">Checking backend status...</div>
-
   <!-- Hosting Setup Section -->
   <div class="section">
     <h2>Hosting Setup</h2>
@@ -193,54 +160,43 @@
         <option value="subdomain">Use Subdomain (e.g., yoursite.hostnet.wiki)</option>
         <option value="customDomain">Use My Own Domain (example.com)</option>
       </select>
-
       <div id="customDomainField" style="display: none;">
         <label for="customDomain">Custom Domain</label>
         <input type="text" id="customDomain" name="customDomain" placeholder="example.com">
       </div>
-
       <div id="subdomainField" style="display: none;">
         <label for="subdomainName">Subdomain Name</label>
         <input type="text" id="subdomainName" name="subdomainName" placeholder="yoursite">
       </div>
-
       <label for="contentOption">Content Type</label>
       <select id="contentOption" name="contentOption" required>
         <option value="">-- Select Option --</option>
         <option value="upload">Upload My Own Code (.zip/.html)</option>
         <option value="generate">Let You Generate the Site</option>
       </select>
-
       <div id="uploadField" style="display: none;">
         <label for="siteCode">Upload Website Files (ZIP or HTML)</label>
         <input type="file" id="siteCode" name="siteCode" accept=".zip,.html,.css,.js,.txt,.php" required>
       </div>
-
       <div id="generatedSiteFields" style="display: none;">
         <label for="siteTitle">Site Title</label>
         <input type="text" id="siteTitle" name="siteTitle" placeholder="My Awesome Site">
-
         <label for="siteDescription">Site Description</label>
         <textarea id="siteDescription" name="siteDescription" rows="3" placeholder="Tell us what your site is about..."></textarea>
       </div>
-
       <div class="g-recaptcha" data-sitekey="6LchojIrAAAAAE8IwjbhOJCIDJZ_kP1QeYw3csVU"></div>
-
       <button type="submit">Submit Request</button>
       <p id="hostingFormMessage" class="status"></p>
     </form>
   </div>
-
   <!-- Transfer Form -->
   <div class="section">
     <h2>Transfer a Domain</h2>
     <form id="transferForm" enctype="multipart/form-data">
       <label for="domainName">Domain Name</label>
       <input type="text" id="domainName" name="domainName" placeholder="example.com" required>
-
       <label for="authCode">Authorization Code (EPP Code)</label>
       <input type="text" id="authCode" name="authCode" placeholder="Your EPP/Auth Code" required pattern="[A-Za-z0-9\-]+">
-
       <label for="reasonSelect">Reason for Transfer</label>
       <select id="reasonSelect" name="reasonSelect" required>
         <option value="">-- Select a Reason --</option>
@@ -248,32 +204,25 @@
         <option value="Redirect">Redirect</option>
         <option value="Other">Other</option>
       </select>
-
       <div id="imageUploadField" style="display: none;">
         <label for="images">Upload Images (Up to 5 files, 10MB each)</label>
         <input type="file" id="images" name="images" multiple accept="image/*" required>
       </div>
-
       <div id="redirectField" style="display: none;">
         <label for="redirectDomain">Redirect Domain</label>
         <input type="text" id="redirectDomain" name="redirectDomain" placeholder="e.g., example.com">
       </div>
-
       <label for="customReason">Custom Reason</label>
       <input type="text" id="customReason" name="customReason" placeholder="Type your reason here">
-
       <div class="g-recaptcha" data-sitekey="6LchojIrAAAAAE8IwjbhOJCIDJZ_kP1QeYw3csVU"></div>
-
       <button type="submit">Submit Request</button>
       <p id="formMessage" class="status"></p>
     </form>
   </div>
-
   <!-- Share Button -->
   <div style="text-align:center;">
     <button class="share-button" id="share-button">Share</button>
   </div>
-
   <!-- Links -->
   <div style="text-align:center; margin-top: 2rem;">
     <p>
@@ -281,37 +230,19 @@
       <a href="https://github.com/hostnet-wiki/ " target="_blank">GitHub</a>
     </p>
   </div>
-
 </div>
-
 <footer>
   © 2025 HostNet.Wiki – All Rights Reserved | <a href="#">Privacy Policy</a>
 </footer>
 
-<!-- JavaScript -->
 <script>
-  // Check backend status
-  async function checkBackendStatus() {
-    const statusEl = document.getElementById("backendStatus");
-    try {
-      const res = await fetch('https://your-backend-api/status');
-      if (res.ok) {
-        statusEl.textContent = "Backend is online.";
-        statusEl.classList.add("success");
-      } else {
-        throw new Error();
-      }
-    } catch (err) {
-      statusEl.textContent = "Backend is offline.";
-      statusEl.classList.add("error");
-    }
-  }
+  // Remove backend status check
+  document.querySelector('.backend-status')?.remove();
 
   // Handle domain choice
   document.getElementById('domainOption').addEventListener('change', function () {
     const subdomain = document.getElementById('subdomainField');
     const customDomain = document.getElementById('customDomainField');
-
     if (this.value === 'subdomain') {
       subdomain.style.display = 'block';
       customDomain.style.display = 'none';
@@ -328,7 +259,6 @@
   document.getElementById('contentOption').addEventListener('change', function () {
     const upload = document.getElementById('uploadField');
     const generate = document.getElementById('generatedSiteFields');
-
     if (this.value === 'upload') {
       upload.style.display = 'block';
       generate.style.display = 'none';
@@ -344,17 +274,14 @@
   // Hosting form submit
   document.getElementById('hostingForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const response = grecaptcha.getResponse();
     if (!response.length > 0) {
       alert("Please complete the CAPTCHA.");
       return;
     }
-
     const formMsg = document.getElementById('hostingFormMessage');
     formMsg.textContent = "Submitting...";
     formMsg.className = "status";
-
     setTimeout(() => {
       formMsg.textContent = "Request submitted successfully!";
       formMsg.className = "status success";
@@ -384,17 +311,14 @@
 
   document.getElementById('transferForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-
     const response = grecaptcha.getResponse();
     if (!response.length > 0) {
       alert("Please complete the CAPTCHA.");
       return;
     }
-
     const formMsg = document.getElementById('formMessage');
     formMsg.textContent = "Submitting...";
     formMsg.className = "status";
-
     setTimeout(() => {
       formMsg.textContent = "Request submitted successfully!";
       formMsg.className = "status success";
@@ -403,8 +327,6 @@
   });
 
   window.onload = () => {
-    checkBackendStatus();
-
     document.getElementById('share-button').addEventListener('click', () => {
       if (navigator.share) {
         navigator.share({
@@ -417,6 +339,5 @@
     });
   };
 </script>
-
 </body>
 </html>
