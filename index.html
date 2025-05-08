@@ -20,6 +20,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron :wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
 
+  <!-- reCAPTCHA Script -->
+  <script src="https://www.google.com/recaptcha/api.js " async defer></script>
+
   <style>
     :root {
       --primary-color: #00f7ff;
@@ -176,6 +179,10 @@
       background-color: rgba(255, 255, 255, 0.2);
       transform: scale(1.05);
     }
+
+    .g-recaptcha {
+      margin: 1rem 0;
+    }
   </style>
 </head>
 <body>
@@ -242,6 +249,9 @@
       <label for="customReason">Custom Reason</label>
       <input type="text" id="customReason" name="customReason" placeholder="Type your reason here">
 
+      <!-- reCAPTCHA Widget -->
+      <div class="g-recaptcha" data-sitekey="6LczrzIrAAAAAOCO9_Sq7zvVNshAEzXTJ8otseBB"></div>
+
       <button type="submit">Submit Request</button>
       <p id="formMessage" class="status"></p>
     </form>
@@ -297,6 +307,14 @@
   document.getElementById('transferForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     const formMsg = document.getElementById('formMessage');
+    const recaptchaResponse = grecaptcha.getResponse();
+
+    if (!recaptchaResponse.length === 0) {
+      formMsg.textContent = "Please complete the CAPTCHA.";
+      formMsg.className = "status error";
+      return;
+    }
+
     const domain = document.getElementById('domainName').value.trim();
     const authCode = document.getElementById('authCode').value.trim();
     const reasonSelect = document.getElementById('reasonSelect').value.trim();
@@ -307,15 +325,14 @@
       return;
     }
 
-    // Build payload and send to Discord (add logic as needed)
     formMsg.textContent = "Submitting...";
     formMsg.className = "status";
 
-    // Simulate success
     setTimeout(() => {
       formMsg.textContent = "Request submitted successfully!";
       formMsg.className = "status success";
       document.getElementById('transferForm').reset();
+      grecaptcha.reset(); // Reset CAPTCHA after submission
     }, 1000);
   });
 
