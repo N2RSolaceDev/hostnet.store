@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>HostNet.Wiki – Fast, Free & Secure Hosting</title>
   <meta name="description" content="HostNet.Wiki – Reliable hosting services with domain transfers, subdomains, and custom code support.">
+  
+  <!-- Open Graph / Social Media Meta -->
+  <meta property="og:title" content="HostNet.Wiki – Fast, Free & Secure Hosting" />
+  <meta property="og:description" content="HostNet.Wiki – Reliable hosting services with domain transfers, subdomains, and custom code support." />
+  <meta property="og:image" content="https://example.com/logo.png " />
+  <meta property="og:url" content="https://hostnet.wiki/ " />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="https://example.com/favicon.ico " type="image/x-icon"/>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron :wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron :wght@500&family=Poppins:wght@400;600&display=swap" rel="stylesheet"/>
 
-  <!-- Styles -->
   <style>
     :root {
       --primary-color: #00f7ff;
       --secondary-color: #ff007a;
-      --bg-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-      --card-bg: rgba(20, 20, 35, 0.9);
+      --bg-gradient: linear-gradient(135deg, #1e1e2f, #2a2a40);
+      --card-bg: rgba(20, 20, 35, 0.95);
       --text-color: #fff;
       --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -25,19 +39,20 @@
       font-family: 'Poppins', sans-serif;
       background: var(--bg-gradient);
       color: var(--text-color);
+      padding: 0;
     }
 
     header {
-      padding: 1.5rem;
-      text-align: center;
       background: var(--card-bg);
       border-bottom: 2px solid var(--border-color);
+      text-align: center;
+      padding: 1.5rem;
     }
 
     .logo {
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -45,14 +60,15 @@
 
     .container {
       max-width: 800px;
-      margin: 2rem auto;
-      padding: 1rem;
+      margin: auto;
+      padding: 2rem 1rem;
+      text-align: center;
     }
 
     h1 {
       font-size: 2.2rem;
-      margin-bottom: 0.5rem;
       color: var(--primary-color);
+      margin-bottom: 0.5rem;
     }
 
     p {
@@ -76,14 +92,15 @@
 
     h2 {
       font-size: 1.5rem;
-      margin-bottom: 1rem;
       color: var(--secondary-color);
+      margin-bottom: 1rem;
     }
 
     label {
       display: block;
       margin-bottom: 0.5rem;
       color: #ccc;
+      font-weight: 500;
     }
 
     input[type="text"],
@@ -145,18 +162,18 @@
     }
 
     .share-button {
-      margin-top: 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border: none;
-      padding: 0.6rem 1.2rem;
-      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
       color: #fff;
+      padding: 0.6rem 1.2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s ease;
     }
 
     .share-button:hover {
-      background: rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.2);
       transform: scale(1.05);
     }
   </style>
@@ -235,25 +252,16 @@
     <button class="share-button" id="share-button">Share</button>
   </div>
 
-  <!-- Links -->
-  <div style="text-align:center; margin-top: 2rem;">
-    <p>
-      <a href="https://discord.gg/hostnetwiki " target="_blank">Discord</a> |
-      <a href="https://github.com/hostnet-wiki/ " target="_blank">GitHub</a>
-    </p>
-  </div>
-
 </div>
 
 <footer>
   © 2025 HostNet.Wiki – All Rights Reserved | <a href="#">Privacy Policy</a>
 </footer>
 
-<!-- JavaScript -->
 <script>
   // Replace with your actual webhook URLs
-  const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/YOUR_WEBHOOK ';
-  const IMGUR_CLIENT_ID = 'YOUR_IMGUR_CLIENT_ID';
+  const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1362428754458181874/TaKeGN5i6l1gnWViBJVrem9jw2yonAxy0_PunlyYcXlwMlhj57tYmogtM7QuXgKj9gPE ';
+  const IMGUR_CLIENT_ID = '919e66780dffebb';
 
   async function checkBackendStatus() {
     const statusEl = document.getElementById("backendStatus");
