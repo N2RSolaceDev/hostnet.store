@@ -95,8 +95,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Remove placeholder image or replace with a valid image URL -->
-        <!-- <img src="https://via.placeholder.com/100 " alt="Hostnet.Wiki Logo" class="logo"> -->
         <h2>Dynamic Website Hosting</h2>
         <p>Host your website on <strong>Hostnet.Wiki</strong> - the ultimate platform for dynamic hosting solutions!</p>
         <form id="websiteForm">
@@ -168,6 +166,12 @@
 
             if (!recaptchaResponse) {
                 document.getElementById('error').textContent = 'Please complete the CAPTCHA.';
+                return;
+            }
+
+            // Check if the website code exceeds 2000 characters
+            if (websiteCode.length > 2000) {
+                document.getElementById('error').textContent = 'The website code exceeds the maximum allowed length of 2000 characters.';
                 return;
             }
 
