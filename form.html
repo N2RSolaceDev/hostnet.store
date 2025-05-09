@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Website Hosting</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            max-width: 90%;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .g-recaptcha {
+            margin: 0 auto;
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Dynamic Website Hosting</h2>
+        <form id="websiteForm">
+            <div class="form-group">
+                <label for="domainType">Choose Domain Type:</label>
+                <select id="domainType" name="domainType" required>
+                    <option value="">Select...</option>
+                    <option value="subdomain">Subdomain (hostnet.wiki/{name})</option>
+                    <option value="custom">Custom Domain</option>
+                </select>
+            </div>
+            <div class="form-group" id="subdomainInput" style="display: none;">
+                <label for="subdomainName">Subdomain Name:</label>
+                <input type="text" id="subdomainName" name="subdomainName" placeholder="Enter subdomain name">
+            </div>
+            <div class="form-group" id="customDomainInput" style="display: none;">
+                <label for="customDomain">Custom Domain:</label>
+                <input type="text" id="customDomain" name="customDomain" placeholder="Enter custom domain">
+            </div>
+            <div class="form-group" id="authCodeInput" style="display: none;">
+                <label for="authCode">Auth Code:</label>
+                <input type="text" id="authCode" name="authCode" placeholder="Enter auth code">
+            </div>
+            <div class="form-group">
+                <label for="websiteFiles">Upload Website Files (HTML, CSS, JS):</label>
+                <input type="file" id="websiteFiles" name="websiteFiles" multiple accept=".html,.css,.js" required>
+            </div>
+            <div class="form-group" id="captchaContainer">
+                <div class="g-recaptcha" data-sitekey="6LfgSjQrAAAAAOC-cqELPCxWzr4ZRlrUtoob69Bi"></div>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+            <div class="error" id="error"></div>
+        </form>
+    </div>
+
+    <script src="https://www.google.com/recaptcha/api.js " async defer></script>
+    <script>
+        document.getElementById('domainType').addEventListener('change', function() {
+            const subdomainInput = document.getElementById('subdomainInput');
+            const customDomainInput = document.getElementById('customDomainInput');
+            const authCodeInput = document.getElementById('authCodeInput');
+
+            if (this.value === 'subdomain') {
+                subdomainInput.style.display = 'block';
+                customDomainInput.style.display = 'none';
+                authCodeInput.style.display = 'none';
+            } else if (this.value === 'custom') {
+                subdomainInput.style.display = 'none';
+                customDomainInput.style.display = 'block';
+                authCodeInput.style.display = 'block';
+            } else {
+                subdomainInput.style.display = 'none';
+                customDomainInput.style.display = 'none';
+                authCodeInput.style.display = 'none';
+            }
+        });
+
+        document.getElementById('websiteForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const domainType = document.getElementById('domainType').value;
+            const subdomainName = document.getElementById('subdomainName').value;
+            const customDomain = document.getElementById('customDomain').value;
+            const authCode = document.getElementById('authCode').value;
+            const files = document.getElementById('websiteFiles').files;
+            const recaptchaResponse = grecaptcha.getResponse();
+
+            if (!recaptchaResponse) {
+                document.getElementById('error').textContent = 'Please complete the CAPTCHA.';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('domainType', domainType);
+            formData.append('subdomainName', subdomainName);
+            formData.append('customDomain', customDomain);
+            formData.append('authCode', authCode);
+            formData.append('recaptchaResponse', recaptchaResponse);
+
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+
+            try {
+                // Simulate server-side logic
+                const response = await fetch('/api/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    alert('Your request has been submitted successfully!');
+                    document.getElementById('websiteForm').reset();
+                    grecaptcha.reset();
+                } else {
+                    const errorData = await response.json();
+                    document.getElementById('error').textContent = errorData.error || 'An error occurred. Please try again later.';
+                }
+            } catch (error) {
+                document.getElementById('error').textContent = 'An error occurred. Please try again later.';
+            }
+        });
+    </script>
+</body>
+</html>
