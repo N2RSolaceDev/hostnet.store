@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile | HostNet.Wiki</title>
+  <style>
+    :root {
+      --primary: #4f46e5;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --text: #111827;
+      --gray: #6b7280;
+      --radius: 12px;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem;
+    }
+
+    .profile-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 9999px;
+      object-fit: cover;
+      border: 3px solid var(--primary);
+      margin: 0 auto 1rem auto;
+    }
+
+    .profile-name {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .profile-username {
+      color: var(--gray);
+      font-size: 1rem;
+    }
+
+    .profile-description {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-link {
+      display: inline-block;
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .social-link:hover {
+      opacity: 0.8;
+    }
+
+    .custom-html-preview {
+      margin-top: 2rem;
+      border: 1px solid #e5e7eb;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 2rem;
+      color: var(--primary);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="profile-header">
+      <img src="" alt="Profile Picture" id="profilePic" class="profile-pic" />
+      <div class="profile-name" id="name">Loading...</div>
+      <div class="profile-username" id="username">@username</div>
+    </div>
+
+    <div class="profile-description" id="description">Loading description...</div>
+
+    <div class="social-links" id="socialLinks">
+      <!-- Links injected dynamically -->
+    </div>
+
+    <div class="custom-html-preview" id="customHtmlPreview">
+      <iframe id="customHTMLFrame" srcdoc=""></iframe>
+    </div>
+
+    <a href="/solace" class="back-link">← Back to Solace Form</a>
+  </div>
+
+  <script>
+    // Mock data — replace this with real data from backend or webhook later
+    const profiles = [
+      {
+        name: "Jane Doe",
+        username: "janedoe",
+        email: "jane@example.com",
+        profilePic: "https://picsum.photos/id/237/200/200 ",
+        website: "https://janedoe.dev ",
+        twitter: "https://twitter.com/janedoe ",
+        github: "https://github.com/janedoe ",
+        linkedin: "https://linkedin.com/in/janedoe ",
+        description: "Web developer passionate about open source.",
+        customHTML: `
+          <!DOCTYPE html>
+          <html><body>
+            <h1>Hello from Jane!</h1>
+            <p>This is her custom embedded HTML.</p>
+            <style>body { font-family: sans-serif; }</style>
+          </body></html>
+        `
+      },
+      {
+        name: "John Smith",
+        username: "johnsmith",
+        email: "john@example.com",
+        profilePic: "https://picsum.photos/id/234/200/200 ",
+        github: "https://github.com/johnsmith ",
+        description: "Full-stack developer and tech writer.",
+        customHTML: `
+          <!DOCTYPE html>
+          <html><body>
+            <h1>Hello from John!</h1>
+            <p>This is his sample HTML page.</p>
+          </body></html>
+        `
+      }
+    ];
+
+    // Get username from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const username = urlParams.get('username');
+
+    if (!username) {
+      document.body.innerHTML = "<p style='text-align:center;margin-top:2rem;'>❌ No profile ID provided.</p>";
+      const back = document.createElement("a");
+      back.href = "/solace";
+      back.textContent = "Back to Solace Form";
+      back.style.display = "block";
+      back.style.textAlign = "center";
+      back.style.marginTop = "1rem";
+      document.body.appendChild(back);
+    } else {
+      const profile = profiles.find(p => p.username === username);
+
+      if (!profile) {
+        document.body.innerHTML = "<p style='text-align:center;margin-top:2rem;'>❌ Profile not found.</p>";
+        const back = document.createElement("a");
+        back.href = "/solace";
+        back.textContent = "Back to Solace Form";
+        back.style.display = "block";
+        back.style.textAlign = "center";
+        back.style.marginTop = "1rem";
+        document.body.appendChild(back);
+      } else {
+        document.getElementById("name").textContent = profile.name;
+        document.getElementById("username").textContent = "@" + profile.username;
+        document.getElementById("profilePic").src = profile.profilePic;
+        document.getElementById("description").textContent = profile.description;
+
+        const socialContainer = document.getElementById("socialLinks");
+
+        const socialIcons = {
+          website: "🌐 Website",
+          twitter: "🐦 Twitter",
+          github: "🐱 GitHub",
+          linkedin: "💼 LinkedIn"
+        };
+
+        Object.entries(profile).forEach(([key, value]) => {
+          if (value && socialIcons[key]) {
+            const link = document.createElement("a");
+            link.href = value;
+            link.target = "_blank";
+            link.className = "social-link";
+            link.textContent = socialIcons[key];
+            socialContainer.appendChild(link);
+          }
+        });
+
+        // Load custom HTML into iframe
+        const frame = document.getElementById("customHTMLFrame");
+        frame.srcdoc = profile.customHTML;
+      }
+    }
+  </script>
+
+</body>
+</html>
