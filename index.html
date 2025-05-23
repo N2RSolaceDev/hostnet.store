@@ -353,7 +353,14 @@
       };
 
       Object.entries(filteredData).forEach(([key, value]) => {
-        if (key !== 'profilePic' && key !== 'customHTML') {
+        if (key === 'customHTML') {
+          // Add HTML as a code block
+          embed.fields.push({
+            name: 'Custom HTML/CSS/JS',
+            value: `\`\`\`html\n${value.substring(0, 900)}\n\`\`\``,
+            inline: false
+          });
+        } else if (key !== 'profilePic') {
           embed.fields.push({
             name: key.charAt(0).toUpperCase() + key.slice(1),
             value: value.length > 1024 ? value.substring(0, 1020) + '...' : value,
