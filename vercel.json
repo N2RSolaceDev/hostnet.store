@@ -3,6 +3,7 @@
     { "src": "/solace", "dest": "/solace.html" },
      { "src": "/banner.png", "dest": "/banner.png" },
      { "src": "/solace.png", "dest": "/solace.png" },
+     { "src": "/profile", "dest": "/profile.html" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
