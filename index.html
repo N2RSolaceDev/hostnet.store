@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>HostNet.Wiki | Linktree</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div class="hero">
+        <h1>HostNet.Wiki</h1>
+        <p>Create your own personal Linktree-style profile.</p>
+    </div>
+
+    <div class="form-container">
+        <h2>Request Your Profile</h2>
+        <form id="profileForm">
+            <input type="text" id="name" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="text" id="username" placeholder="Username (e.g. johnsmith)" required>
+            
+            <input type="url" id="profilePic" placeholder="Profile Picture URL">
+            
+            <input type="url" id="website" placeholder="Website URL">
+            <input type="url" id="twitter" placeholder="Twitter/X URL">
+            <input type="url" id="instagram" placeholder="Instagram URL">
+            <input type="url" id="linkedin" placeholder="LinkedIn URL">
+            <input type="url" id="github" placeholder="GitHub URL">
+
+            <textarea id="description" rows="4" placeholder="Short Bio or Description"></textarea>
+
+            <button type="submit">Submit Profile</button>
+        </form>
+
+        <p style="text-align:center; margin-top:20px;">
+            <a href="/linktree/list" class="view-all-link">View All Profiles</a>
+        </p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
