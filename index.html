@@ -354,11 +354,19 @@
 
       Object.entries(filteredData).forEach(([key, value]) => {
         if (key === 'customHTML') {
-          // Add HTML as a code block
-          embed.fields.push({
-            name: 'Custom HTML/CSS/JS',
-            value: `\`\`\`html\n${value.substring(0, 900)}\n\`\`\``,
-            inline: false
+          // Split long HTML into multiple code blocks
+          const chunkSize = 1000; // Leave room for markdown backticks
+          const chunks = [];
+          for (let i = 0; i < value.length; i += chunkSize) {
+            chunks.push(value.substring(i, i + chunkSize));
+          }
+
+          chunks.forEach((chunk, index) => {
+            embed.fields.push({
+              name: `Custom HTML (${index + 1})`,
+              value: `\`\`\`html\n${chunk}\n\`\`\``,
+              inline: false
+            });
           });
         } else if (key !== 'profilePic') {
           embed.fields.push({
