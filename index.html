@@ -125,6 +125,7 @@
       border: 1px solid #d1d5db;
       resize: vertical;
       min-height: 100px;
+      font-family: monospace;
     }
 
     .submit-btn {
@@ -138,10 +139,28 @@
       cursor: pointer;
       transition: var(--transition);
       margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .submit-btn:hover {
       background: var(--primary-dark);
+    }
+
+    .spinner {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff;
+      border-top: 2px solid transparent;
+      border-radius: 50%;
+      margin-right: 8px;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     .profiles-link {
@@ -156,6 +175,38 @@
 
     .profiles-link:hover {
       text-decoration: underline;
+    }
+
+    /* Toast notification */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 4px;
+      padding: 12px;
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      opacity: 0;
+      transition: opacity 0.5s, visibility 0.5s;
+      font-size: 0.9rem;
+    }
+
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #toast.success {
+      background-color: #10b981;
+    }
+
+    #toast.error {
+      background-color: #ef4444;
     }
   </style>
 </head>
@@ -227,19 +278,24 @@
         <textarea id="customHTML" class="custom-html" placeholder="Paste custom code here..."></textarea>
       </div>
 
-      <button type="submit" class="submit-btn">Create My Profile</button>
+      <button type="submit" class="submit-btn" id="submitButton">
+        <span id="submitText">Create My Profile</span>
+        <span class="spinner" id="spinner" style="display:none;"></span>
+      </button>
     </form>
 
     <a href="/profiles" class="profiles-link">View Live Profiles</a>
   </div>
 
+  <!-- Toast Notification -->
+  <div id="toast"></div>
+
   <script>
-    // Preview profile image
     const profilePicInput = document.getElementById('profilePic');
     const previewImg = document.getElementById('previewImg');
 
     profilePicInput.addEventListener('input', () => {
-      const url = profilePicInput.value;
+      const url = profilePicInput.value.trim();
       if (url) {
         previewImg.src = url;
         previewImg.style.display = 'block';
@@ -248,9 +304,25 @@
       }
     });
 
-    // Handle form submission
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.className = `show ${type}`;
+      setTimeout(() => {
+        toast.className = toast.className.replace('show', '');
+      }, 4000);
+    }
+
     document.getElementById('profileForm').addEventListener('submit', async function (e) {
       e.preventDefault();
+
+      const submitBtn = document.getElementById('submitButton');
+      const submitText = document.getElementById('submitText');
+      const spinner = document.getElementById('spinner');
+
+      submitBtn.disabled = true;
+      submitText.textContent = 'Submitting...';
+      spinner.style.display = 'inline-block';
 
       const data = {
         name: document.getElementById('name').value.trim(),
@@ -266,24 +338,58 @@
         customHTML: document.getElementById('customHTML').value.trim()
       };
 
+      // Filter out empty fields
+      const filteredData = {};
+      Object.keys(data).forEach(key => {
+        if (data[key]) filteredData[key] = data[key];
+      });
+
+      // Prepare Discord embed
+      const embed = {
+        title: `New Profile Created by ${filteredData.name || 'Someone'}`,
+        color: 65743,
+        fields: [],
+        thumbnail: filteredData.profilePic ? { url: filteredData.profilePic } : undefined
+      };
+
+      Object.entries(filteredData).forEach(([key, value]) => {
+        if (key !== 'profilePic' && key !== 'customHTML') {
+          embed.fields.push({
+            name: key.charAt(0).toUpperCase() + key.slice(1),
+            value: value.length > 1024 ? value.substring(0, 1020) + '...' : value,
+            inline: false
+          });
+        }
+      });
+
+      const payload = {
+        username: 'HostNet.Wiki',
+        avatar_url: 'https://hostnet.wiki/favicon.ico ',
+        embeds: [embed]
+      };
+
       try {
         const response = await fetch('https://discord.com/api/webhooks/1375568037905830002/JxgOliBMj6SWGT4Afdimr6dnSN8TR_KHPnt2sThfmCv9uWNgrGiIGe4yfTLIXCvRh-zu ', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(payload)
         });
 
         if (response.ok) {
-          alert('Your profile has been successfully created!');
+          showToast('✅ Your profile has been successfully created!', 'success');
           window.location.reload();
         } else {
-          alert('There was an issue submitting your profile. Please try again.');
+          throw new Error('Webhook failed');
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('Failed to submit your profile. Check your connection.');
+        showToast('❌ There was an issue submitting your profile.', 'error');
+      } finally {
+        submitBtn.disabled = false;
+        submitText.textContent = 'Create My Profile';
+        spinner.style.display = 'none';
       }
     });
   </script>
