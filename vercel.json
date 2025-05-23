@@ -1,6 +1,8 @@
 {
   "routes": [
     { "src": "/solace", "dest": "/solace.html" },
+     { "src": "/banner.png", "dest": "/banner.png" },
+     { "src": "/solace.png", "dest": "/solace.png" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
