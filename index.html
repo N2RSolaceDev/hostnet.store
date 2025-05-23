@@ -117,17 +117,6 @@
       flex-direction: column;
     }
 
-    .custom-html {
-      font-size: 0.875rem;
-      padding: 0.75rem 1rem;
-      background: #f3f4f6;
-      border-radius: var(--radius);
-      border: 1px solid #d1d5db;
-      resize: vertical;
-      min-height: 100px;
-      font-family: monospace;
-    }
-
     .submit-btn {
       background: var(--primary);
       color: white;
@@ -269,13 +258,16 @@
       </div>
 
       <div class="form-group">
-        <label for="description">Bio or Description</label>
-        <textarea id="description"></textarea>
+        <label for="customHTMLUrl">Public URL to Your HTML Page</label>
+        <input 
+          type="url" 
+          id="customHTMLUrl" 
+          placeholder="https://your-site.com/your-page.html " />
       </div>
 
       <div class="form-group">
-        <label for="customHTML">Custom HTML/CSS/JS (Optional)</label>
-        <textarea id="customHTML" class="custom-html" placeholder="Paste custom code here..."></textarea>
+        <label for="description">Bio or Description</label>
+        <textarea id="description"></textarea>
       </div>
 
       <button type="submit" class="submit-btn" id="submitButton">
@@ -334,8 +326,8 @@
         instagram: document.getElementById('instagram').value.trim(),
         linkedin: document.getElementById('linkedin').value.trim(),
         github: document.getElementById('github').value.trim(),
-        description: document.getElementById('description').value.trim(),
-        customHTML: document.getElementById('customHTML').value.trim()
+        customHTMLUrl: document.getElementById('customHTMLUrl').value.trim(),
+        description: document.getElementById('description').value.trim()
       };
 
       // Filter out empty fields
@@ -353,20 +345,11 @@
       };
 
       Object.entries(filteredData).forEach(([key, value]) => {
-        if (key === 'customHTML') {
-          // Split long HTML into multiple code blocks
-          const chunkSize = 1000; // Leave room for markdown backticks
-          const chunks = [];
-          for (let i = 0; i < value.length; i += chunkSize) {
-            chunks.push(value.substring(i, i + chunkSize));
-          }
-
-          chunks.forEach((chunk, index) => {
-            embed.fields.push({
-              name: `Custom HTML (${index + 1})`,
-              value: `\`\`\`html\n${chunk}\n\`\`\``,
-              inline: false
-            });
+        if (key === 'customHTMLUrl') {
+          embed.fields.push({
+            name: 'Custom HTML Page',
+            value: `[Click here to view →](${value})`,
+            inline: false
           });
         } else if (key !== 'profilePic') {
           embed.fields.push({
