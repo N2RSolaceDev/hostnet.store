@@ -2,6 +2,6 @@
   "routes": [
     { "src": "/(.*)", "dest": "/index.html" },
     { "src": "/profiles", "dest": "/profile.html" },
-    { "src": "/solace", "dest": "/solace.html" },
+    { "src": "/solace", "dest": "/solace.html" }
   ]
 }
