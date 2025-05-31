@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{name}} - HostNet.Wiki</title>
+  <!-- Add your styles here -->
+</head>
+<body>
+  <div class="profile-container">
+    <img src="{{profilePic}}" alt="{{name}}" class="profile-pic" />
+    <h1>{{name}}</h1>
+    <p>{{description}}</p>
+
+    <div class="social-links">
+      {{#if website}}
+      <a href="{{website}}">Website</a>
+      {{/if}}
+      {{#if twitter}}
+      <a href="{{twitter}}">Twitter</a>
+      {{/if}}
+      {{#if instagram}}
+      <a href="{{instagram}}">Instagram</a>
+      {{/if}}
+      {{#if linkedin}}
+      <a href="{{linkedin}}">LinkedIn</a>
+      {{/if}}
+      {{#if github}}
+      <a href="{{github}}">GitHub</a>
+      {{/if}}
+    </div>
+  </div>
+</body>
+</html>
