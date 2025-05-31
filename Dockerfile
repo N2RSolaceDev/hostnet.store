@@ -20,6 +20,9 @@ RUN apk add --no-cache bash coreutils
 # Copy project files
 COPY . .
 
+# Change to the app directory
+WORKDIR /app/app
+
 # Install dependencies
 RUN npm install
 
