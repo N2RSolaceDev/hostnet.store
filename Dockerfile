@@ -14,23 +14,17 @@ ENV SERVER_PORT=${SERVER_PORT} \
     ENVIRONMENT=${ENVIRONMENT} \
     FOOTER_TEXT=${FOOTER_TEXT}
 
-# Install core utilities if needed (for sed, etc.)
+# Install core utilities
 RUN apk add --no-cache bash coreutils
 
-# Copy all static files from current directory
+# Copy project files
 COPY . .
 
-# Install http-server globally
-RUN npm install -g http-server
-
-# Optional: Inject environment and footer text into index.html
-RUN if [ -f index.html ]; then \
-      sed -i "s|<!-- ENV_INFO -->|<p class=\"env-info\">Environment: ${ENVIRONMENT}</p>|g" index.html && \
-      sed -i "s|<!-- FOOTER_TEXT -->|<p class=\"footer-text\">${FOOTER_TEXT}</p>|g" index.html; \
-    fi
+# Install dependencies
+RUN npm install
 
 # Expose configurable port
 EXPOSE ${SERVER_PORT}
 
-# Start the http-server with the specified port
-CMD ["sh", "-c", "http-server -p $SERVER_PORT"]
+# Start the server
+CMD ["node", "server.js"]
