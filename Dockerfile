@@ -20,9 +20,6 @@ RUN apk add --no-cache bash coreutils
 # Copy project files
 COPY . .
 
-# Change to the app directory
-WORKDIR /app/app
-
 # Install dependencies
 RUN npm install
 
@@ -30,4 +27,4 @@ RUN npm install
 EXPOSE ${SERVER_PORT}
 
 # Start the server
-CMD ["node", "server.js"]
+CMD ["node", "app/server.js"]
